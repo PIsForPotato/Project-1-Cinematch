@@ -17,6 +17,10 @@ A zip file of the project is included in this repository.
 
 For the case of Eclipse (the IDE where this project was built), one can import this project via "File" -> "Import..." -> "Existing Projects into Workspace" and selecting a downloaded Cinematch.zip.
 
+### Compiling and Running in Eclipse
+To compile and run the program in the Eclipse IDE, run Cinematch.java as a "Java Application" because it contains the main method necessary to initialize the program loop. 
+Any other IDE should similarly run Cinematch.java to start the main method loop. 
+
 ### Important note about JUnit testing
 JUnit testing is done using the 'CS2-Support' package as provided by the CS 2114 class this project was built for. The project assumes that CS2-Support is both downloaded and within the project's build path. Anyone not in our university will not have access to said package. Therefore, unfortunately, our JUnit testing is not accessible to external viewers.
 
