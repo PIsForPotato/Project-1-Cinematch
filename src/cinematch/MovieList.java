@@ -28,7 +28,7 @@ public class MovieList
      * Create a new MovieList object.
      * 
      * @param movies
-     *            an Arraylist of Movie objects
+     *            an ArrayList of Movie objects
      */
     public MovieList(ArrayList<Movie> movies)
     {
@@ -59,7 +59,8 @@ public class MovieList
     {
         for (Movie m : movies)
         {
-            System.out.println(m.getTitle() + " - " + m.getGenre());
+            System.out.println(
+                m.getTitle() + " - " + m.getGenre() + " - " + m.getDirector());
         }
     }
 
@@ -148,6 +149,34 @@ public class MovieList
         for (Movie m : movies)
         {
             if (m.getGenre() == genre)
+            {
+                results.addMovie(m);
+            }
+        }
+        return results;
+    }
+
+
+    // ----------------------------------------------------------
+    /**
+     * Returns all movies matching the given director. Returns an empty list if
+     * nothing is found.
+     * 
+     * @param director
+     *            Movie director
+     * @return MovieList with matching genres
+     */
+    public MovieList directorSearch(String director)
+    {
+        MovieList results = new MovieList();
+        if (director == null)
+        {
+            return results;
+        }
+        for (Movie m : movies)
+        {
+            if (m.getDirector() != null
+                && m.getDirector().equalsIgnoreCase(director))
             {
                 results.addMovie(m);
             }

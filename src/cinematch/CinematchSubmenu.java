@@ -12,6 +12,7 @@ public class CinematchSubmenu
 
     private String titleInput = null;
     private char genreInput = 'Z';
+    private String directorInput = null;
     private int searchType = 0;
     private MovieList databaseMovies = new MovieList();
     private MovieList watchedMovies = new MovieList();
@@ -110,11 +111,11 @@ public class CinematchSubmenu
                     + "Available Genres:\n" + "C - Comedy\n" + "A - Action\n"
                     + "H - Horror\n" + "S - Sci-fi\n" + "D - Drama");
             System.out.print("Enter genre: ");
-            
-            
+
             String tempScannerResult = scanner.nextLine();
-            
-            if (tempScannerResult.length() == 1)  {
+
+            if (tempScannerResult.length() == 1)
+            {
                 tempScannerResult = tempScannerResult.toUpperCase();
                 genre = tempScannerResult.charAt(0);
             }
@@ -140,6 +141,32 @@ public class CinematchSubmenu
 
     // ----------------------------------------------------------
     /**
+     * Prompts the user for a String director. Sets director to "Unknown" is
+     * empty
+     * 
+     * @return Returns the director input by the user
+     */
+    public String directorPrompt()
+    {
+        String director = "";
+
+        System.out.print("Enter director: ");
+        director = scanner.nextLine();
+        if (director == "")
+        {
+            System.out.println("Director set as Unknown");
+            director = "Unknown";
+        }
+
+        director = director.replaceAll("\\s", "");
+
+        directorInput = director;
+        return director;
+    }
+
+
+    // ----------------------------------------------------------
+    /**
      * Prompts the user to search for genre or movie
      * 
      * @return Returns the search input by the user
@@ -153,13 +180,13 @@ public class CinematchSubmenu
             System.out.println(
                 "----------------------------------------------------------\n"
                     + "What do you want to search for?\n" + "1 - By genre\n"
-                    + "2 - By title");
+                    + "2 - By title\n" + "3 - By director");
             System.out.print("Enter choice: ");
 
             try
             {
                 search = Integer.parseInt(scanner.nextLine());
-                if (search != 1 && search != 2)
+                if (search != 1 && search != 2 && search != 3)
                 {
                     System.out.println("Please input a valid integer.");
                     search = 0;
@@ -190,10 +217,11 @@ public class CinematchSubmenu
         Movie newMovie = null;
         boolean sameTitle = false;
         boolean sameGenre = false;
+        boolean sameDirector = false;
 
-        if (titleInput != null && genreInput != 'Z')
+        if (titleInput != null && genreInput != 'Z' && directorInput != null)
         {
-            newMovie = new Movie(titleInput, genreInput);
+            newMovie = new Movie(titleInput, genreInput, directorInput);
         }
         else
         {
@@ -208,8 +236,11 @@ public class CinematchSubmenu
         {
             sameGenre = true;
         }
-
-        if (sameTitle && sameGenre)
+        if (!watchedMovies.directorSearch(directorInput).isEmpty())
+        {
+            sameDirector = true;
+        }
+        if (sameTitle && sameGenre && sameDirector)
         {
             System.out.println(
                 "This entry is a duplicate of an existing movie in your watched movies. It will not be added.");
@@ -247,6 +278,15 @@ public class CinematchSubmenu
                 return null;
             }
             returnList = databaseMovies.titleSearch(titleInput);
+        }
+        else if (searchType == 3)
+        {
+            if (directorInput == null)
+            {
+                System.out.println("Invalid director");
+                return null;
+            }
+            returnList = databaseMovies.directorSearch(directorInput);
         }
         else
         {

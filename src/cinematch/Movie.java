@@ -9,6 +9,7 @@ public class Movie
 
     private String title;
     private char genre;
+    private String director;
 
     // ----------------------------------------------------------
     /**
@@ -23,6 +24,26 @@ public class Movie
     {
         this.title = title;
         this.genre = genre;
+        this.director = "Unknown";
+    }
+
+
+    // ----------------------------------------------------------
+    /**
+     * Create a new Movie object.
+     * 
+     * @param title
+     *            Movie title
+     * @param genre
+     *            Movie genre
+     * @param director
+     *            Movie director
+     */
+    public Movie(String title, char genre, String director)
+    {
+        this.title = title;
+        this.genre = genre;
+        this.director = director;
     }
 
 
@@ -52,6 +73,18 @@ public class Movie
 
     // ----------------------------------------------------------
     /**
+     * Returns movie director
+     * 
+     * @return movie director
+     */
+    public String getDirector()
+    {
+        return director;
+    }
+
+
+    // ----------------------------------------------------------
+    /**
      * Two movies are considered equal (i.e. exact duplicates) if both their
      * title (case-insensitive) and genre match.
      */
@@ -71,20 +104,4 @@ public class Movie
             && this.genre == other.genre;
     }
 
-
-    // ----------------------------------------------------------
-    @Override
-    public int hashCode()
-    {
-        int titleHash = (title == null) ? 0 : title.toUpperCase().hashCode();
-        return 31 * titleHash + Character.hashCode(genre);
-    }
-
-
-    // ----------------------------------------------------------
-    @Override
-    public String toString()
-    {
-        return title + " (" + genre + ")";
-    }
 }

@@ -1,8 +1,8 @@
 package cinematch;
+
 import student.TestCase;
 
 import java.util.ArrayList;
-
 
 /**
  * Tests the MovieList class.
@@ -10,10 +10,10 @@ import java.util.ArrayList;
  * @author Daana Doddabendigere
  * @version 2026.09.25
  */
-public class MovieListTest extends student.TestCase
+public class MovieListTest
+    extends student.TestCase
 {
     private MovieList list;
-    
 
     /**
      * Sets up the test.
@@ -23,6 +23,7 @@ public class MovieListTest extends student.TestCase
         list = new MovieList();
     }
 
+
     /**
      * Tests the constructor.
      */
@@ -30,6 +31,7 @@ public class MovieListTest extends student.TestCase
     {
         assertEquals(0, list.getMovies().size());
     }
+
 
     /**
      * Tests the ArrayList constructor.
@@ -42,9 +44,9 @@ public class MovieListTest extends student.TestCase
         MovieList newList = new MovieList(movies);
 
         assertEquals(1, newList.getMovies().size());
-        assertEquals("Avatar",
-            newList.getMovies().get(0).getTitle());
+        assertEquals("Avatar", newList.getMovies().get(0).getTitle());
     }
+
 
     /**
      * Tests getMovies.
@@ -57,6 +59,7 @@ public class MovieListTest extends student.TestCase
 
         assertEquals(avatar, list.getMovies().get(0));
     }
+
 
     /**
      * Tests addMovie.
@@ -71,6 +74,7 @@ public class MovieListTest extends student.TestCase
         assertTrue(list.getMovies().contains(movie));
     }
 
+
     /**
      * Tests removeMovie.
      */
@@ -84,6 +88,7 @@ public class MovieListTest extends student.TestCase
         assertEquals(0, list.getMovies().size());
     }
 
+
     /**
      * Tests titleSearch.
      */
@@ -95,9 +100,9 @@ public class MovieListTest extends student.TestCase
         MovieList result = list.titleSearch("Interstellar");
 
         assertEquals(1, result.getMovies().size());
-        assertEquals("Interstellar",
-            result.getMovies().get(0).getTitle());
+        assertEquals("Interstellar", result.getMovies().get(0).getTitle());
     }
+
 
     /**
      * Tests titleSearch when no movie is found.
@@ -111,6 +116,7 @@ public class MovieListTest extends student.TestCase
         assertEquals(0, result.getMovies().size());
     }
 
+
     /**
      * Tests genreSearch.
      */
@@ -122,9 +128,26 @@ public class MovieListTest extends student.TestCase
         MovieList result = list.genreSearch('C');
 
         assertEquals(1, result.getMovies().size());
-        assertEquals("Shrek",
-            result.getMovies().get(0).getTitle());
+        assertEquals("Shrek", result.getMovies().get(0).getTitle());
     }
+
+
+    /**
+     * Tests directorSearch.
+     */
+    public void testDirectorSearch()
+    {
+        list.addMovie(new Movie("Interstellar", 'S'));
+        list.addMovie(new Movie("Avatar", 'A', "JamesCameron"));
+        list.addMovie(new Movie("Titanic", 'D', "JamesCameron"));
+
+        MovieList result = list.directorSearch("JamesCameron");
+
+        assertEquals(2, result.getMovies().size());
+        assertEquals("Avatar", result.getMovies().get(0).getTitle());
+        assertEquals("Titanic", result.getMovies().get(1).getTitle());
+    }
+
 
     /**
      * Tests removeOtherList.

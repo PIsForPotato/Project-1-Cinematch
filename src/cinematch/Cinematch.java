@@ -5,9 +5,6 @@ import java.util.Scanner;
 // -------------------------------------------------------------------------
 /**
  * The main Cinematch menu. Has the main menu and calls sub-menu processes
- * 
- * @author Alex Zhao
- * @version Sep 22, 2026
  */
 public class Cinematch
 {
@@ -148,6 +145,7 @@ public class Cinematch
             Movie newMovie = null;
             addWatchedMovieMenu.genrePrompt();
             addWatchedMovieMenu.titlePrompt();
+            addWatchedMovieMenu.directorPrompt();
             newMovie = addWatchedMovieMenu.createMovie();
 
             if (newMovie == null)
@@ -192,6 +190,10 @@ public class Cinematch
             else if (searchType == 2)
             {
                 searchMovieMenu.titlePrompt();
+            }
+            else if (searchType == 3)
+            {
+                searchMovieMenu.directorPrompt();
             }
 
             newMovieList = searchMovieMenu.searchMovies();

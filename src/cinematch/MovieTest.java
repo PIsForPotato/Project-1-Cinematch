@@ -11,6 +11,7 @@ import student.TestCase;
 public class MovieTest extends student.TestCase
 {
   private Movie movie;
+  private Movie secondMovie;
 
   /**
    * Sets up the test.
@@ -18,6 +19,7 @@ public class MovieTest extends student.TestCase
   public void setUp()
   {
       movie = new Movie("Titanic", 'D');
+      secondMovie = new Movie("Titanic", 'D', "JamesCameron");
   }
 
   /**
@@ -42,8 +44,18 @@ public class MovieTest extends student.TestCase
    */
   public void testGetGenre()
   {
+      assertEquals("Unknown", movie.getDirector());
+      assertEquals("JamesCameron", secondMovie.getDirector());
+  }
+  
+  /**
+   * Tests getDirector.
+   */
+  public void testGetDirector()
+  {
       assertEquals('D', movie.getGenre());
   }
+
 
   /**
    * Tests equals.
