@@ -19,3 +19,6 @@ For the case of Eclipse (the IDE where this project was built), one can import t
 
 ### Important note about JUnit testing
 JUnit testing is done using the 'CS2-Support' package as provided by the CS 2114 class this project was built for. The project assumes that CS2-Support is both downloaded and within the project's build path. Anyone not in our university will not have access to said package. Therefore, unfortunately, our JUnit testing is not accessible to external viewers.
+
+## UML System Diagram
+<img width="1025" height="848" alt="2026-9-25 Project 1 UML Diagram" src="https://github.com/user-attachments/assets/2a407fe9-31bd-4a8b-acd8-b429e8ef8a14" />
